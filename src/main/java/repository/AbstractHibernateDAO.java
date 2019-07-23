@@ -62,26 +62,4 @@ public abstract class AbstractHibernateDAO<T extends Serializable> {
         return sessionFactory.openSession();
     }
 
-
-    public int getTotalRowCount(Class clazz) {
-        return getTotalRowCount(clazz, null);
-    }
-
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public int getTotalRowCount(Class clazz, List<Predicate> predicateList) {
-        try (Session session = getOpenSession();) {
-            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-            CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
-            criteriaQuery.select(criteriaBuilder.count(criteriaQuery.from(clazz)));
-            if (predicateList != null && !predicateList.isEmpty()) {
-                criteriaQuery.where(predicateList.toArray(new Predicate[predicateList.size()]));
-            }
-            Long countResults = session.createQuery(criteriaQuery).uniqueResult();
-//            int totalPageNumber = (int) (Math.ceil(countResults / pageSize));
-            return countResults.intValue();
-        }
-    }
 }
