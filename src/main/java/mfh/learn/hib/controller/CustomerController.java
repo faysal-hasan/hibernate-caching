@@ -46,7 +46,7 @@ public class CustomerController {
         } else {
             customerService.save(customer);
             modelAndView.addObject("customer", customer);
-            modelAndView.setViewName("redirect: /");
+            modelAndView.setViewName("redirect:/");
         }
 
         return modelAndView;
