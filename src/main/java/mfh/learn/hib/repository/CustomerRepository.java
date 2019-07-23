@@ -1,6 +1,6 @@
-package repository;
+package mfh.learn.hib.repository;
 
-import model.Customer;
+import mfh.learn.hib.model.Customer;
 
 public abstract class CustomerRepository extends AbstractHibernateDAO<Customer> {
     public CustomerRepository() {

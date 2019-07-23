@@ -1,6 +1,6 @@
-package model;
+package mfh.learn.hib.model;
 
-import exception.ApiException;
+import mfh.learn.hib.exception.ApiException;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;

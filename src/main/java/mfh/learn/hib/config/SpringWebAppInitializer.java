@@ -1,4 +1,4 @@
-package config;
+package mfh.learn.hib.config;
 
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
@@ -25,28 +25,13 @@ public class SpringWebAppInitializer implements WebApplicationInitializer {
 
         // Create the dispatcher servlet's Spring application context
         AnnotationConfigWebApplicationContext dispatcherWebApplicationContext = new AnnotationConfigWebApplicationContext();
-        dispatcherWebApplicationContext.register( WebMvcConfig.class);
+        dispatcherWebApplicationContext.register(ApplicationContextConfig.class, WebMvcConfig.class);
 
         // Register and map the dispatcher servlet
         ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher", new DispatcherServlet(dispatcherWebApplicationContext));
         dispatcher.addMapping("/");
         dispatcher.setLoadOnStartup(1);
 
-
-       /* AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
-        appContext.register(ApplicationContextConfig.class, HibernateConfig.class);
-
-        ServletRegistration.Dynamic dispatcher = servletContext.addServlet("SpringDispatcher",
-                new DispatcherServlet(appContext));
-        dispatcher.setLoadOnStartup(1);
-        dispatcher.addMapping("/");*/
-
-        // UtF8 Charactor Filter.
-//        FilterRegistration.Dynamic fr = servletContext.addFilter("encodingFilter", CharacterEncodingFilter.class);
-//
-//        fr.setInitParameter("encoding", "UTF-8");
-//        fr.setInitParameter("forceEncoding", "true");
-//        fr.addMappingForUrlPatterns(null, true, "/*");
     }
 
 }

@@ -1,13 +1,10 @@
-package config;
+package mfh.learn.hib.config;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.validation.Validator;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -21,8 +18,7 @@ import java.util.Locale;
 
 @Configuration
 @EnableWebMvc
-@EnableAspectJAutoProxy
-@ComponentScan("java.*")
+@ComponentScan("mfh.learn.hib.*")
 public class WebMvcConfig implements WebMvcConfigurer {
 
     // the followings are overriden method.
@@ -40,7 +36,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 
     /* messageSource bean is spring built-in bean name which will manipulate internationalization messages.
-     * All message files is saved in src/main/resources/i18n/ folder, if the config folder do not exist, you need to create it first by hand.
+     * All message files is saved in src/main/resources/i18n/ folder, if the mfh.learn.hib.config folder do not exist, you need to create it first by hand.
      * Each message file is a properties file, the file base name is messages and suffix with the language or country ISO code, such as messages_en, messages_zh_cn etc.
      * */
 
@@ -98,7 +94,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     /* The LocaleChangeInterceptor is a interceptor that will intercept user locale change by a parameter value.
      * For example, if we set the locale change parameter name is locale, then request url http://localhost:8088/index.jsp?locale=en will change
-     * user locale to en and display messages in src/main/resources/config/messages_en.properties.
+     * user locale to en and display messages in src/main/resources/mfh.learn.hib.config/messages_en.properties.
      *  */
     @Bean(name = "localeInterceptor")
     public LocaleChangeInterceptor getLocaleInterceptor() {
@@ -111,18 +107,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(getLocaleInterceptor());
-    }
-
-    @Bean
-    public LocalValidatorFactoryBean validator() {
-        LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
-        bean.setValidationMessageSource(getMessageResource());
-        return bean;
-    }
-
-    @Override
-    public Validator getValidator() {
-        return validator();
     }
 
 }

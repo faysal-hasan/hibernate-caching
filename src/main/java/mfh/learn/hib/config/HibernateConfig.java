@@ -1,4 +1,4 @@
-package config;
+package mfh.learn.hib.config;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import java.util.Properties;
 @Configuration
 @PropertySource("classpath:application.properties")
 @EnableTransactionManagement
-@ComponentScan(value = "java.*")
+@ComponentScan(value = "mfh.learn.hib.*")
 public class HibernateConfig {
 
     @Autowired
@@ -63,8 +63,8 @@ public class HibernateConfig {
         sessionFactoryBean.setDataSource(getDataSource());
 
         sessionFactoryBean.setHibernateProperties(getProperties());
-//        sessionFactoryBean.setAnnotatedPackages("mfh.spring.api.model");
-        sessionFactoryBean.setPackagesToScan(new String[]{"java.model"});
+//        sessionFactoryBean.setAnnotatedPackages("mfh.spring.api.mfh.learn.hib.model");
+        sessionFactoryBean.setPackagesToScan(new String[]{"mfh.learn.hib.model"});
 //        sessionFactoryBean.setAnnotatedClasses(Customer.class);
         return sessionFactoryBean;
     }

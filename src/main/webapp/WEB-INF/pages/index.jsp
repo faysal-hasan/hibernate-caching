@@ -1,5 +1,3 @@
-<%@ page import="mfh.spring.api.model.Customer" %>
-<%@ page import="mfh.spring.api.model.ModelFactory" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,38 +13,26 @@
 
 <div class="container">
     <h2>Customers</h2>
+
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th>Firstname</th>
-            <th>Lastname</th>
+            <th>User Name</th>
             <th>Email</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${customerModelFactory.dataList}" var="customer">
+        <c:forEach items="${customers}" var="customer">
             <tr>
-                <td><c:out value="${customer.firstName}"/></td>
-                <td><c:out value="${customer.lastName}"/></td>
+                <td><c:out value="${customer.userName}"/></td>
                 <td><c:out value="${customer.email}"/></td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-    <%
-        ModelFactory<Customer> customerModelFactory = (ModelFactory<Customer>) request.getAttribute("customerModelFactory");
-        boolean hasNextPage = customerModelFactory.isHasNextPage();
-        boolean hasPrevPage = customerModelFactory.isHasPreviousPage();
-        int currentPage = customerModelFactory.getCurrentPage();
-    %>
-    <ul class="pagination" style="pointer-events:none;">
-        <li class="page-item ${hasPrevPage? "active": "disabled"}"><a class="page-link" href="#">Previous</a></li>
-        <c:forEach begin="1" end="${customerModelFactory.totalPageNumber}" var="pageNumber">
-            <li class="page-item ${currentPage == pageNumber? "active": "disabled"}"><a class="page-link"
-                                                                                        href="#">${pageNumber}</a></li>
-        </c:forEach>
-        <li class="page-item ${hasNextPage? "active": "disabled"}"><a class="page-link" href="#">Next</a></li>
-    </ul>
+    <div class="">
+        <a href="customer-form">Add customer?</a>
+    </div>
 </div>
 
 </body>

@@ -1,4 +1,4 @@
-package model;
+package mfh.learn.hib.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,7 +28,7 @@ public class Customer implements Serializable {
     public static final String PROP_ID = "id";
 
     @Id
-    @GenericGenerator(name = "customGenerator", strategy = "model.CustomIdGenerator")
+    @GenericGenerator(name = "customGenerator", strategy = "mfh.learn.hib.model.CustomIdGenerator")
     @GeneratedValue(generator = "customGenerator", strategy = GenerationType.SEQUENCE)
     @Column(name = "ID", unique = true)
     private String id;

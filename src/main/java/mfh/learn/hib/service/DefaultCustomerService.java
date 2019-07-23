@@ -1,12 +1,12 @@
-package service;
+package mfh.learn.hib.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import model.Customer;
+import mfh.learn.hib.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import repository.CustomerRepository;
+import mfh.learn.hib.repository.CustomerRepository;
 
 import java.util.List;
 

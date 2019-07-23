@@ -1,6 +1,6 @@
-package service;
+package mfh.learn.hib.service;
 
-import model.Customer;
+import mfh.learn.hib.model.Customer;
 
 import java.util.List;
 
